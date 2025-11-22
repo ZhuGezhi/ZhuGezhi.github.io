@@ -12,7 +12,7 @@ github_repo: "https://github.com/ZhuGezhi/zhugezhi.github.io.git" # you code rep
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Knowledge and action unite; action validates knowledge."
-sidebar-avatar: /img/about-LZ-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/about-LZ-gentle.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
