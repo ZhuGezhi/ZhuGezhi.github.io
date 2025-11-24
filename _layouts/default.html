@@ -94,11 +94,38 @@
 
 <body ontouchstart="">
 
-    <!-- iOS风格公告栏 -->
-    <div id="announcement-bar" style="background: var(--ios-gray-50); padding: 12px; text-align: center; border-bottom: 1px solid var(--ios-gray-200);">
-        <span style="color: var(--ios-gray-800); font-size: 14px; font-weight: 400;">👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: var(--ios-blue); font-weight: 500;">zhugezhi7711@qq.com</a>（回复及时）</span>
-        <button onclick="this.parentElement.style.display='none'" style="margin-left: 15px; background: none; border: none; cursor: pointer; color: var(--ios-gray-700); font-size: 16px; padding: 2px 6px; border-radius: 4px;">×</button>
-    </div>
+ <!-- 公告栏部分修改 -->
+<div id="announcement-bar" style="
+  background: var(--ios-gray-50); 
+  padding: 12px; 
+  text-align: center; 
+  border-bottom: 1px solid var(--ios-gray-200);
+  position: relative; /* 确保层级 */
+  z-index: 10; /* 高于下方内容 */
+  margin-bottom: 10px; /* 增加底部间距 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 增加轻微阴影区分层级 */
+">
+  <span style="
+    color: var(--ios-gray-800); 
+    font-size: 14px; 
+    font-weight: 400;
+    display: inline-block; /* 避免文字挤压 */
+    max-width: 90%; /* 限制宽度，防止换行遮挡 */
+  ">
+    👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: var(--ios-blue); font-weight: 500;">zhugezhi7711@qq.com</a>（回复及时）
+  </span>
+  <button onclick="this.parentElement.style.display='none'" style="
+    margin-left: 10px; 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    color: var(--ios-gray-700); 
+    font-size: 16px; 
+    padding: 2px 6px; 
+    border-radius: 4px;
+    vertical-align: middle; /* 垂直居中 */
+  ">×</button>
+</div>
 
     {% include nav.html %}
 
