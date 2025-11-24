@@ -24,7 +24,7 @@
       });
     });
     
-    // 回到顶部按钮功能
+    // 回到顶部按钮功能（iOS风格）
     const backToTopBtn = document.createElement('button');
     backToTopBtn.id = 'back-to-top';
     backToTopBtn.textContent = '↑';
@@ -32,18 +32,33 @@
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #333;
-      color: white;
-      border: none;
+      background: #f9fafb;
+      color: #007aff;
+      border: 1px solid #e5e7eb;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       font-size: 20px;
       cursor: pointer;
       display: none;
       z-index: 9999;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      transition: all 0.2s ease;
     `;
     document.body.appendChild(backToTopBtn);
+    
+    // 回到顶部按钮hover效果
+    backToTopBtn.addEventListener('mouseenter', function() {
+      this.style.background = '#007aff';
+      this.style.color = 'white';
+      this.style.transform = 'scale(1.05)';
+    });
+    
+    backToTopBtn.addEventListener('mouseleave', function() {
+      this.style.background = '#f9fafb';
+      this.style.color = '#007aff';
+      this.style.transform = 'scale(1)';
+    });
     
     window.addEventListener('scroll', function() {
       if (window.pageYOffset > 300) {
@@ -60,14 +75,39 @@
   });
 </script>
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" style="-webkit-tap-highlight-color: rgba(0,0,0,0);">
+<!-- iOS风格全局样式定义 -->
+<style type="text/css">
+    /* iOS风格配色系统 */
+    :root {
+        --ios-gray-50: #f9fafb;
+        --ios-gray-100: #f3f4f6;
+        --ios-gray-200: #e5e7eb;
+        --ios-gray-300: #d1d5db;
+        --ios-gray-700: #374151;
+        --ios-gray-800: #1f2937;
+        --ios-blue: #007aff;
+        --ios-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    }
+    
+    /* 全局链接样式统一 */
+    a {
+        color: var(--ios-blue);
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+</style>
 
-    <!-- 公告栏（新增） -->
-    <div id="announcement-bar" style="background: #f0f8fb; padding: 10px; text-align: center; border-bottom: 1px solid #e8f4f8;">
-    <span style="color: #2d3748; font-size: 14px;">👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: #4299e1;">zhugezhi7711@qq.com</a>（回复及时）</span>
-    <button onclick="this.parentElement.style.display='none'" style="margin-left: 15px; background: none; border: none; cursor: pointer; color: #718096;">×</button>
-</div>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" style="-webkit-tap-highlight-color: rgba(0,0,0,0); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+
+    <!-- iOS风格公告栏 -->
+    <div id="announcement-bar" style="background: var(--ios-gray-50); padding: 12px; text-align: center; border-bottom: 1px solid var(--ios-gray-200);">
+        <span style="color: var(--ios-gray-800); font-size: 14px; font-weight: 400;">👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: var(--ios-blue); font-weight: 500;">zhugezhi7711@qq.com</a>（回复及时）</span>
+        <button onclick="this.parentElement.style.display='none'" style="margin-left: 15px; background: none; border: none; cursor: pointer; color: var(--ios-gray-700); font-size: 16px; padding: 2px 6px; border-radius: 4px;">×</button>
+    </div>
 
     {% include nav.html %}
 
@@ -75,9 +115,9 @@
 
     {% include footer.html %}
 
-    <!-- 自定义页脚信息（补充） -->
-    <div style="text-align: center; padding: 15px; font-size: 12px; color: #718096; border-top: 1px solid #e2e8f0;">
-        © 2025 Lorne的博客 | <a href="/about/" style="color: #4299e1;">关于我</a> | <a href="/sitemap.xml" style="color: #4299e1;">网站地图</a>
+    <!-- iOS风格页脚信息 -->
+    <div style="text-align: center; padding: 20px; font-size: 13px; color: var(--ios-gray-700); border-top: 1px solid var(--ios-gray-200); background: var(--ios-gray-50);">
+        © 2025 Lorne的博客 | <a href="/about/" style="color: var(--ios-blue);">关于我</a> | <a href="/sitemap.xml" style="color: var(--ios-blue);">网站地图</a>
     </div>
 
 <!-- Image to hack wechat -->
