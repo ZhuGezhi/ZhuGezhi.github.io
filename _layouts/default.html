@@ -105,28 +105,34 @@
         line-height: 1.6;
     }
     
-    /* 社交图标样式优化 */
+    /* 方形社交图标样式 */
     .social-icons .fa-stack {
-        width: 2em;
-        height: 2em;
-        line-height: 2em;
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
         text-align: center;
         margin: 0 5px;
+        border-radius: 6px; /* 极小圆角，接近方形 */
     }
     .social-icons .fa-stack-2x {
-        border-radius: 50%;
+        border-radius: 4px; /* 方形背景 */
         border: 1px solid var(--ios-gray-200);
         background: var(--ios-gray-50);
         transition: all 0.2s ease;
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
     }
     .social-icons .fa-stack-1x {
         color: var(--ios-gray-700);
         transition: color 0.2s ease;
+        line-height: 44px;
     }
     .social-icons .fa-stack:hover .fa-stack-2x {
         background: var(--ios-blue);
         border-color: var(--ios-blue);
         transform: translateY(-2px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.12);
     }
     .social-icons .fa-stack:hover .fa-stack-1x {
         color: white;
@@ -138,7 +144,7 @@
         padding: 6px 12px;
         background: var(--ios-gray-50);
         color: var(--ios-gray-800);
-        border-radius: 16px;
+        border-radius: 8px; /* 方形标签 */
         font-size: 14px;
         font-weight: 500;
         margin: 0 4px 8px 0;
@@ -158,6 +164,11 @@
     /* 内容容器间距优化 */
     .container {
         padding-top: 20px;
+    }
+    
+    /* 公告栏样式优化 */
+    #announcement-bar {
+        margin-bottom: 25px !important;
     }
 </style>
 
