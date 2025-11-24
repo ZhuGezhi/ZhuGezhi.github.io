@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">  <!-- 改为中文语言 -->
+<html lang="zh-CN">
 
 {% include head.html %}
 
@@ -11,40 +11,26 @@
   gtag('js', new Date());
   gtag('config', 'G-CZXSW9B3FH');
   
-  // 自定义事件：跟踪导航栏点击
+  // 确保DOM加载完成后执行
   document.addEventListener('DOMContentLoaded', function() {
-    // 导航栏点击事件
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        gtag('event', 'navigation_click', {
-          'link_text': this.textContent.trim(),
-          'link_url': this.href
+    // 导航栏点击事件跟踪
+    if (document.querySelectorAll('nav a')) {
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'navigation_click', {
+            'link_text': this.textContent.trim(),
+            'link_url': this.href
+          });
         });
       });
-    });
+    }
     
-    // 回到顶部按钮功能（iOS风格）
-    const backToTopBtn = document.createElement('button');
+    // 回到顶部按钮功能
+    var backToTopBtn = document.createElement('button');
     backToTopBtn.id = 'back-to-top';
     backToTopBtn.textContent = '↑';
-    backToTopBtn.style.cssText = `
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #f9fafb;
-      color: #007aff;
-      border: 1px solid #e5e7eb;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      z-index: 9999;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-      transition: all 0.2s ease;
-    `;
+    backToTopBtn.style.cssText = 'position: fixed; bottom: 30px; right: 30px; background: #f9fafb; color: #007aff; border: 1px solid #e5e7eb; border-radius: 50%; width: 48px; height: 48px; font-size: 20px; cursor: pointer; display: none; z-index: 9999; box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); transition: all 0.2s ease;';
     document.body.appendChild(backToTopBtn);
     
     // 回到顶部按钮hover效果
@@ -98,10 +84,15 @@
         text-decoration: underline;
         text-underline-offset: 2px;
     }
+    
+    /* 全局字体设置 */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
 </style>
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" style="-webkit-tap-highlight-color: rgba(0,0,0,0); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<body ontouchstart="">
 
     <!-- iOS风格公告栏 -->
     <div id="announcement-bar" style="background: var(--ios-gray-50); padding: 12px; text-align: center; border-bottom: 1px solid var(--ios-gray-200);">
@@ -121,7 +112,7 @@
     </div>
 
 <!-- Image to hack wechat -->
-<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<img src="{{ site.baseurl }}/img/apple-touch-icon.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
