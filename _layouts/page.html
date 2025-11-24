@@ -2,6 +2,201 @@
 layout: default
 ---
 
+<!-- iOS风格样式定制 -->
+<style type="text/css">
+    /* 继承全局iOS配色系统 */
+    :root {
+        --ios-gray-50: #f9fafb;
+        --ios-gray-100: #f3f4f6;
+        --ios-gray-200: #e5e7eb;
+        --ios-gray-300: #d1d5db;
+        --ios-gray-700: #374151;
+        --ios-gray-800: #1f2937;
+        --ios-blue: #007aff;
+        --ios-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    /* 头部Banner优化 */
+    .intro-header {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 30px;
+    }
+    .intro-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+        z-index: 0;
+    }
+    .intro-header .container {
+        position: relative;
+        z-index: 1;
+        padding: 60px 0;
+    }
+    .site-heading {
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .site-heading h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        color: white;
+        letter-spacing: -0.02em;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        margin-bottom: 0.5rem;
+    }
+    .site-heading .subheading {
+        font-size: 1.25rem;
+        color: rgba(255,255,255,0.9);
+        font-weight: 400;
+    }
+
+    /* 内容容器样式 */
+    .container {
+        padding: 0 15px;
+    }
+    .postlist-container, .sidebar-container {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* 侧边栏卡片样式 */
+    section {
+        margin-bottom: 20px;
+        padding: 16px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: var(--ios-shadow);
+    }
+
+    /* 标签云样式 */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    .tags a {
+        padding: 6px 12px;
+        background: var(--ios-gray-50);
+        color: var(--ios-gray-800);
+        border-radius: 16px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid var(--ios-gray-200);
+    }
+    .tags a:hover {
+        background: var(--ios-blue);
+        color: white;
+        border-color: var(--ios-blue);
+        transform: translateY(-1px);
+        box-shadow: var(--ios-shadow);
+    }
+
+    /* 个人信息区域样式 */
+    .short-about {
+        text-align: center;
+        padding: 8px 0;
+    }
+    .short-about img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 16px;
+        border: 3px solid white;
+        box-shadow: var(--ios-shadow);
+    }
+    .short-about p {
+        color: var(--ios-gray-700);
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+    }
+
+    /* 社交图标样式 */
+    .fa-stack {
+        transition: all 0.2s ease;
+    }
+    .fa-stack-2x {
+        color: var(--ios-gray-100);
+        border: 1px solid var(--ios-gray-200);
+        border-radius: 50%;
+    }
+    .fa-stack-1x {
+        color: var(--ios-gray-700);
+    }
+    .fa-stack:hover .fa-stack-2x {
+        color: var(--ios-blue);
+        border-color: var(--ios-blue);
+    }
+    .fa-stack:hover .fa-stack-1x {
+        color: white;
+    }
+
+    /* 友情链接样式 */
+    .list-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        margin: 12px 0 0 0;
+        list-style: none;
+        justify-content: center;
+    }
+    .list-inline li a {
+        padding: 4px 8px;
+        font-size: 14px;
+        color: var(--ios-gray-700);
+        background: var(--ios-gray-50);
+        border-radius: 6px;
+        border: 1px solid var(--ios-gray-200);
+        text-decoration: none;
+    }
+    .list-inline li a:hover {
+        background: var(--ios-gray-100);
+        color: var(--ios-blue);
+    }
+
+    /* 标题样式 */
+    h5 {
+        margin: 0 0 8px 0;
+        color: var(--ios-gray-800);
+        font-weight: 600;
+        font-size: 16px;
+    }
+    h5 a {
+        color: inherit;
+        text-decoration: none;
+    }
+    h5 a:hover {
+        color: var(--ios-blue);
+        text-decoration: none;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+        .site-heading h1 {
+            font-size: 2.25rem;
+        }
+        .site-heading .subheading {
+            font-size: 1.1rem;
+        }
+        .sidebar-container {
+            margin-top: 20px;
+        }
+        section {
+            padding: 12px;
+        }
+    }
+</style>
+
 <!-- Page Header -->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
     <div class="container">
@@ -9,8 +204,7 @@ layout: default
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
                     <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">{{ page.description }}</span>
+                    <span class="subheading">{{ page.description | default: site.description }}</span>
                 </div>
             </div>
         </div>
@@ -27,15 +221,11 @@ layout: default
                 {{ content }}
             </div>
     <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container">
 
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>
-                    <!-- no hr -->
                     <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
                     <div class="tags">
         				{% for tag in site.tags %}
@@ -51,44 +241,32 @@ layout: default
 
                 <!-- Friends Blog -->
                 {% if site.friends %}
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    {% for friend in site.friends %}
-                        <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-                    {% endfor %}
-                </ul>
+                <section>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        {% for friend in site.friends %}
+                            <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
                 {% endif %}
             </div>
         {% else %}
 
 <!-- USE SIDEBAR -->
     <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
+    		<div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 postlist-container">
     			{{ content }}
     		</div>
     <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+            <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12 sidebar-container">
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>
-                    <hr class="hidden-sm hidden-xs">
                     <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
                     <div class="tags">
                         {% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
+                            {% if tag[1].size > site.featured-condition-size %}
                                 <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
                                     {{ tag[0] }}
                                 </a>
@@ -100,7 +278,7 @@ layout: default
 
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
-                    <hr><h5><a href="{{'/about/' | prepend: site.baseurl }}">ABOUT ME</a></h5>
+                    <h5><a href="{{'/about/' | prepend: site.baseurl }}">ABOUT ME</a></h5>
                     <div class="short-about">
                         {% if site.sidebar-avatar %}
                             <a href="{{ site.baseurl }}/about">
@@ -122,23 +300,12 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            <!-- add jianshu add target = "_blank" to <a> by BY -->
-                            {% if site.jianshu_username %}
+                            {% if site.github_username %}
                             <li>
-                                <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
+                                <a target="_blank" href="https://github.com/{{ site.github_username }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if site.twitter_username %}
-                            <li>
-                                <a href="https://twitter.com/{{ site.twitter_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
@@ -148,7 +315,7 @@ layout: default
                                 <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        <i class="fa fa-stack-1x fa-inverse">知</i>
                                     </span>
                                 </a>
                             </li>
@@ -163,42 +330,33 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            {% if site.facebook_username %}
+                            {% if site.twitter_username %}
                             <li>
-                                <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
+                                <a target="_blank" href="https://twitter.com/{{ site.twitter_username }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
                             {% endif %}
-                            {% if site.github_username %}
-                            <li>
-                                <a target="_blank" href="https://github.com/{{ site.github_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            
                         </ul>
                         {% if site.email %}
-                            <p>✉️ {{site.email}}</p>
+                            <p style="margin: 8px 0 0 0; font-size: 13px; color: var(--ios-gray-700);">✉️ {{site.email}}</p>
                         {% endif %}
                     </div>
                 </section>
+
                 <!-- Friends Blog -->
                 {% if site.friends %}
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    {% for friend in site.friends %}
-                        <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-                    {% endfor %}
-                </ul>
+                <section>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        {% for friend in site.friends %}
+                            <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
                 {% endif %}
     		</div>
         {% endif %}
