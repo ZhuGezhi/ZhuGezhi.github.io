@@ -15,7 +15,7 @@ sidebar-about-description: "Knowledge and action unite; action validates knowled
 sidebar-avatar: /img/about-LZ-gentle.JPG      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # SNS settings
-RSS: true
+RSS: false
 weibo_username:     Lorne7711
 zhihu_username:     卤汁香.
 github_username:    ZhuGezhi
