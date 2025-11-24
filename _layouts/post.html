@@ -281,7 +281,78 @@ layout: default
             color: var(--ios-blue);
         }
     }
+
+    /* ========== 新增：解决社交图标框与圈不对等问题 ========== */
+    /* 社交图标容器样式 */
+    .social-icons .fa-stack {
+        width: 2em;
+        height: 2em;
+        line-height: 2em;
+        text-align: center;
+    }
+    .social-icons .fa-stack-2x {
+        border-radius: 50%;
+        border: 1px solid var(--ios-gray-200);
+        background: var(--ios-gray-50);
+    }
+    .social-icons .fa-stack-1x {
+        color: var(--ios-gray-700);
+    }
+    .social-icons .fa-stack:hover .fa-stack-2x {
+        background: var(--ios-blue);
+        border-color: var(--ios-blue);
+    }
+    .social-icons .fa-stack:hover .fa-stack-1x {
+        color: white;
+    }
+
+    /* ========== 新增：解决公告栏与标签重叠问题 ========== */
+    /* 公告栏样式 */
+    #announcement-bar {
+        background: var(--ios-gray-50);
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid var(--ios-gray-200);
+        position: relative;
+        z-index: 10;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    #announcement-bar span {
+        color: var(--ios-gray-800);
+        font-size: 14px;
+        font-weight: 400;
+        display: inline-block;
+        max-width: 90%;
+    }
+    #announcement-bar button {
+        margin-left: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--ios-gray-700);
+        font-size: 16px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        vertical-align: middle;
+    }
+    #announcement-bar button:hover {
+        background: var(--ios-gray-200);
+    }
+
+    /* 确保标签区域不被遮挡 */
+    .featured-tags-section {
+        margin-top: 15px;
+        position: relative;
+        z-index: 1;
+    }
 </style>
+
+<!-- 新增：公告栏HTML结构 -->
+<div id="announcement-bar">
+    <span>👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: var(--ios-blue); font-weight: 500;">zhugezhi7711@qq.com</a>（回复及时）</span>
+    <button onclick="this.parentElement.style.display='none'">×</button>
+</div>
 
 <header class="intro-header" >
     <div class="header-mask"></div>
@@ -397,7 +468,7 @@ layout: default
 
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
-                <section>
+                <section class="featured-tags-section">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				{% for tag in site.tags %}
@@ -415,9 +486,9 @@ layout: default
                 {% if site.friends %}
                 <section>
                     <h5>FRIENDS</h5>
-                    <ul class="list-inline">
+                    <ul class="list-inline social-icons">
                         {% for friend in site.friends %}
-                            <li><a href="{{friend.href}}">{{friend.title}}</a></li>
+                        <li><a href="{{friend.href}}">{{friend.title}}</a></li>
                         {% endfor %}
                     </ul>
                 </section>
