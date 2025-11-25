@@ -82,9 +82,11 @@ layout: default
         text-decoration: none;
         backdrop-filter: blur(4px);
         border: 1px solid rgba(255,255,255,0.3);
+        transition: all 0.2s ease;
     }
     .post-heading .tags .tag:hover {
         background: rgba(255,255,255,0.3);
+        transform: translateY(-1px);
     }
 
     /* 文章内容区域 */
@@ -128,6 +130,8 @@ layout: default
         background: var(--ios-blue);
         color: white;
         border-color: var(--ios-blue);
+        transform: translateY(-2px);
+        box-shadow: var(--ios-shadow);
     }
     .pager li.previous a {
         margin-right: auto;
@@ -238,10 +242,12 @@ layout: default
         border-radius: 6px;
         border: 1px solid var(--ios-gray-200);
         text-decoration: none;
+        transition: all 0.2s ease;
     }
     .list-inline li a:hover {
         background: var(--ios-gray-100);
         color: var(--ios-blue);
+        transform: translateY(-1px);
     }
 
     /* 评论区样式 */
@@ -290,30 +296,29 @@ layout: default
         line-height: 44px !important;
         text-align: center !important;
         margin: 0 5px !important;
-        border-radius: 6px !important; /* 极小圆角，接近方形 */
+        border-radius: 6px !important; /* 统一圆角 */
         -webkit-border-radius: 6px !important;
         -moz-border-radius: 6px !important;
     }
     
     .social-icons .fa-stack-2x {
-        border-radius: 4px !important; /* 方形背景，非圆形 */
-        -webkit-border-radius: 4px !important;
-        -moz-border-radius: 4px !important;
+        border-radius: 6px !important; /* 与外层一致 */
+        -webkit-border-radius: 6px !important;
+        -moz-border-radius: 6px !important;
         border: 1px solid var(--ios-gray-200) !important;
         background: var(--ios-gray-50) !important;
         transition: all 0.2s ease !important;
         width: 44px !important;
         height: 44px !important;
         line-height: 44px !important;
-        /* 确保不是圆形 */
-        border-radius: 0% !important;
-        border-radius: 4px !important;
     }
     
     .social-icons .fa-stack-1x {
         color: var(--ios-gray-700) !important;
         transition: color 0.2s ease !important;
         line-height: 44px !important;
+        font-size: 20px !important; /* 统一图标大小 */
+        vertical-align: middle !important; /* 强制居中 */
     }
     
     .social-icons .fa-stack:hover .fa-stack-2x {
@@ -370,6 +375,7 @@ layout: default
     }
     #announcement-bar button:hover {
         background: var(--ios-gray-200);
+        transform: scale(1.1);
     }
 
     /* 确保标签区域不被遮挡 */
@@ -573,4 +579,4 @@ layout: default
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })
 </script>
-{% endif %}  
+{% endif %}
