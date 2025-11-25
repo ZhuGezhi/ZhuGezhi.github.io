@@ -3,31 +3,19 @@
 
 {% include head.html %}
 
-<!-- Google Analytics -->
-<script>
-    (function() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-CZXSW9B3FH';
-        document.head.appendChild(script);
-        
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-CZXSW9B3FH');
-    })();
-</script>
-
-<!-- iOS风格全局基础样式 -->
+<!-- 全局样式定义 -->
 <style type="text/css">
     :root {
         --ios-gray-50: #f9fafb;
         --ios-gray-100: #f3f4f6;
         --ios-gray-200: #e5e7eb;
         --ios-gray-300: #d1d5db;
+        --ios-gray-500: #6b7280;
+        --ios-gray-600: #4b5563;
         --ios-gray-700: #374151;
         --ios-gray-800: #1f2937;
         --ios-blue: #007aff;
+        --ios-yellow: #ffcc00;
         --ios-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
         --ios-shadow-hover: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
     }
@@ -44,6 +32,26 @@
         color: var(--ios-gray-800);
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
+        padding-top: 60px; /* 为固定导航栏预留空间 */
+    }
+    
+    /* 公告栏样式 */
+    .announcement-bar {
+        background-color: var(--ios-yellow);
+        color: var(--ios-gray-800);
+        padding: 12px 0;
+        text-align: center;
+        font-weight: 500;
+        font-size: 15px;
+        box-shadow: var(--ios-shadow);
+        position: relative;
+        z-index: 900; /* 确保在导航栏下方 */
+    }
+    
+    .announcement-bar a {
+        color: var(--ios-blue);
+        text-decoration: underline;
+        font-weight: 600;
     }
     
     .container {
@@ -61,6 +69,22 @@
     
     a:hover {
         color: #0066cc;
+    }
+    
+    /* 导航栏样式 - 确保不与公告栏重叠 */
+    nav {
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-shadow: var(--ios-shadow);
+        z-index: 1000; /* 确保在公告栏上方 */
     }
     
     /* 回到顶部按钮 */
@@ -87,6 +111,11 @@
 </style>
 
 <body ontouchstart="">
+    <!-- 公告栏 - 位于导航栏下方，不重叠 -->
+    <div class="announcement-bar">
+        欢迎联系邮箱 <a href="mailto:zhugezhi7711@qq.com">zhugezhi7711@qq.com</a> 交流各种问题！
+    </div>
+    
     {% include nav.html %}
 
     <main class="main-content" role="main">
@@ -95,9 +124,6 @@
 
     {% include footer.html %}
 
-    <!-- Wechat hack image -->
-    <img src="{{ site.baseurl }}/img/apple-touch-icon.png" width="0" height="0" style="display: none;" />
-    
     <!-- 回到顶部功能 -->
     <button id="back-to-top">↑</button>
     <script>
