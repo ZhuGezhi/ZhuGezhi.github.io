@@ -2,16 +2,15 @@
 layout: default
 ---
 
-<!-- iOS风格文章样式 -->
 <style type="text/css">
     /* 文章头部Banner */
     .intro-header {
         position: relative;
         background-size: cover;
         background-position: center;
-        background-color: var(--ios-gray-100);
+        background-color: var(--light-gray);
         margin-bottom: 30px;
-        border-radius: 12px;
+        border-radius: var(--border-radius);
         overflow: hidden;
     }
     
@@ -41,15 +40,12 @@ layout: default
     .post-heading h1 {
         font-size: 3rem;
         font-weight: 600;
-        letter-spacing: -0.02em;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         margin-bottom: 1rem;
     }
     
     .post-heading .subheading {
         font-size: 1.25rem;
         color: rgba(255,255,255,0.9);
-        font-weight: 400;
         margin-bottom: 1rem;
     }
     
@@ -58,83 +54,17 @@ layout: default
         color: rgba(255,255,255,0.8);
     }
 
-    /* 文章标签 */
-    .post-heading .tags {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 1.5rem;
-    }
-    
-    .post-heading .tags .tag {
-        padding: 6px 12px;
-        background: rgba(255,255,255,0.3);
-        color: white;
-        border-radius: 16px;
-        font-size: 14px;
-        font-weight: 500;
-        border: 1px solid rgba(255,255,255,0.4);
-        backdrop-filter: blur(8px);
-        transition: all 0.2s ease;
-    }
-    
-    .post-heading .tags .tag:hover {
-        background: rgba(255,255,255,0.5);
-        transform: translateY(-1px);
-    }
-
     /* 文章内容容器 */
     .post-container {
         background: white;
-        border-radius: 12px;
+        border-radius: var(--border-radius);
         padding: 24px;
-        box-shadow: var(--ios-shadow);
+        box-shadow: var(--shadow);
         margin-bottom: 30px;
-        color: var(--ios-gray-800);
+        color: var(--primary-color);
         line-height: 1.8;
-        font-size: 17px;
     }
     
-    .post-container h1, .post-container h2, .post-container h3 {
-        margin-top: 2rem;
-        margin-bottom: 1.2rem;
-        color: var(--ios-gray-800);
-    }
-    
-    .post-container p {
-        margin-bottom: 1.4rem;
-    }
-    
-    .post-container img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 1.5rem 0;
-        border: 1px solid var(--ios-gray-200);
-    }
-    
-    .post-container code {
-        background: var(--ios-gray-100);
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: "SF Mono", Menlo, monospace;
-        font-size: 0.9em;
-    }
-    
-    .post-container pre {
-        background: var(--ios-gray-800);
-        color: white;
-        padding: 16px;
-        border-radius: 8px;
-        overflow-x: auto;
-        margin: 1.5rem 0;
-    }
-    
-    .post-container pre code {
-        background: transparent;
-        padding: 0;
-    }
-
     /* 分页导航 */
     .pager {
         margin: 20px 0 40px 0;
@@ -144,63 +74,69 @@ layout: default
         justify-content: space-between;
     }
     
-    .pager li {
-        display: inline-block;
-    }
-    
     .pager li a {
         display: block;
         padding: 10px 20px;
         background: white;
-        border: 1px solid var(--ios-gray-200);
-        border-radius: 8px;
-        color: var(--ios-gray-800);
+        border: 1px solid #e5e7eb;
+        border-radius: var(--border-radius);
+        color: var(--primary-color);
         transition: all 0.2s ease;
+        text-decoration: none;
     }
     
     .pager li a:hover {
-        background: var(--ios-blue);
+        background: var(--accent-color);
         color: white;
-        border-color: var(--ios-blue);
-        transform: translateY(-2px);
-        box-shadow: var(--ios-shadow-hover);
-        text-decoration: none;
+        border-color: var(--accent-color);
     }
 
-    /* 侧边栏 */
-    .sidebar-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 30px; /* 解决与评论框重叠问题 */
-    }
-    
-    .sidebar-container section {
-        background: white;
-        border-radius: 12px;
-        padding: 16px;
-        box-shadow: var(--ios-shadow);
-    }
-
-    /* 评论区 - 确保不与侧边栏重叠 */
+    /* 评论区样式 */
     .giscus-container {
         margin-top: 40px;
         padding: 20px;
         background: white;
-        border-radius: 12px;
-        box-shadow: var(--ios-shadow);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
         width: 100%;
-        clear: both; /* 清除浮动影响 */
     }
-
-    /* 响应式设计 */
+    
+    /* 评论框下方元素居中 */
+    .post-sidebar-elements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    
+    .post-sidebar-element {
+        width: 100%;
+        max-width: 600px;
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--shadow);
+    }
+    
+    /* 侧边栏在右侧 */
+    @media (min-width: 769px) {
+        .container {
+            flex-direction: row;
+        }
+        
+        .main-content {
+            order: 1;
+        }
+        
+        .sidebar {
+            order: 2;
+        }
+    }
+    
     @media (max-width: 768px) {
         .post-heading h1 {
             font-size: 2.25rem;
-        }
-        
-        .post-container {
-            padding: 16px;
         }
         
         .pager {
@@ -211,19 +147,10 @@ layout: default
         .pager li {
             width: 100%;
         }
-        
-        .pager li a {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .sidebar-container {
-            margin-top: 20px;
-        }
     }
 </style>
 
-<!-- Post Header -->
+<!-- 文章头部 -->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
     <div class="container">
         <div class="row">
@@ -245,100 +172,75 @@ layout: default
     </div>
 </header>
 
-<!-- Post Content -->
+<!-- 文章内容 -->
 <article>
-    <div class="container" style="padding: 20px 0;">
-        <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-container">
-                    {{ content }}
-                </div>
+    <div class="post-container">
+        {{ content }}
+    </div>
 
-                <!-- Pagination -->
-                <ul class="pager">
-                    {% if page.previous.url %}
-                    <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.previous.title}}">
-                            ← Previous Post<br>
-                            <span>{{page.previous.title}}</span>
-                        </a>
-                    </li>
+    <!-- 分页导航 -->
+    <ul class="pager">
+        {% if page.previous.url %}
+        <li class="previous">
+            <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.previous.title}}">
+                ← Previous Post<br>
+                <span>{{page.previous.title}}</span>
+            </a>
+        </li>
+        {% endif %}
+        {% if page.next.url %}
+        <li class="next">
+            <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.next.title}}">
+                Next Post →<br>
+                <span>{{page.next.title}}</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <!-- 评论区 -->
+    <div class="giscus-container">
+        <script src="https://giscus.app/client.js"
+                data-repo="ZhuGezhi/zhugezhi.github.io"
+                data-repo-id="R_kgDOQa9DDg"
+                data-category="General"
+                data-category-id="DIC_kwDOQa9DDs4Cy4Sx"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-CN"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+    
+    <!-- 评论框下方的元素（居中显示） -->
+    <div class="post-sidebar-elements">
+        {% if site.featured-tags %}
+        <div class="post-sidebar-element">
+            <h3 class="section-title">FEATURED TAGS</h3>
+            <div class="tags">
+                {% for tag in site.tags %}
+                    {% if tag[1].size > site.featured-condition-size %}
+                        <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" class="tag">{{ tag[0] }}</a>
                     {% endif %}
-                    {% if page.next.url %}
-                    <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.next.title}}">
-                            Next Post →<br>
-                            <span>{{page.next.title}}</span>
-                        </a>
-                    </li>
-                    {% endif %}
-                </ul>
-
-                <!-- Giscus Comments - 确保评论框正常显示且不重叠 -->
-                <div class="giscus-container">
-                    <script src="https://giscus.app/client.js"
-                            data-repo="ZhuGezhi/zhugezhi.github.io"
-                            data-repo-id="R_kgDOQa9DDg"
-                            data-category="General"
-                            data-category-id="DIC_kwDOQa9DDs4Cy4Sx"
-                            data-mapping="pathname"
-                            data-strict="0"
-                            data-reactions-enabled="1"
-                            data-emit-metadata="0"
-                            data-input-position="top"
-                            data-theme="preferred_color_scheme"
-                            data-lang="zh-CN"
-                            crossorigin="anonymous"
-                            async>
-                    </script>
-                </div>
-            </div>
-
-            <!-- Sidebar -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 sidebar-container">
-                {% if site.featured-tags %}
-                <section>
-                    <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        {% for tag in site.tags %}
-                            {% if tag[1].size > site.featured-condition-size %}
-                                <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}">{{ tag[0] }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </section>
-                {% endif %}
-
-                {% if site.friends %}
-                <section>
-                    <h5>FRIENDS</h5>
-                    <ul class="list-inline">
-                        {% for friend in site.friends %}
-                            <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </section>
-                {% endif %}
+                {% endfor %}
             </div>
         </div>
+        {% endif %}
+
+        {% if site.friends.size > 0 %}
+        <div class="post-sidebar-element">
+            <h3 class="section-title">FRIENDS</h3>
+            <div class="friend-links">
+                {% for friend in site.friends %}
+                <a href="{{ friend.href }}" target="_blank" class="friend-link">{{ friend.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
 </article>
-
-<!-- AnchorJS -->
-{% if site.anchorjs %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js"></script>
-<script>
-    anchors.add('.post-container h1, .post-container h2, .post-container h3');
-    anchors.remove('.intro-header h1, .subheading');
-</script>
-{% endif %}
-
-<!-- Disqus (备用) -->
-{% if site.disqus_username %}
-<script type="text/javascript">
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{page.id}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-</script>
-{% endif %}
