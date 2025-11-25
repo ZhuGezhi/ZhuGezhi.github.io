@@ -79,22 +79,32 @@
         --ios-gray-100: #f3f4f6;
         --ios-gray-200: #e5e7eb;
         --ios-gray-300: #d1d5db;
+        --ios-gray-400: #9ca3af;
         --ios-gray-700: #374151;
         --ios-gray-800: #1f2937;
         --ios-blue: #007aff;
+        --ios-blue-dark: #0066cc;
         --ios-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        --ios-shadow-hover: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    }
+    
+    /* 全局样式重置 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
     
     /* 全局链接样式统一 */
     a {
         color: var(--ios-blue);
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
     }
     a:hover {
         text-decoration: underline;
         text-underline-offset: 2px;
-        color: #0066cc;
+        color: var(--ios-blue-dark);
     }
     
     /* 全局字体设置 */
@@ -103,31 +113,39 @@
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         color: var(--ios-gray-800);
         line-height: 1.6;
+        background-color: var(--ios-gray-50);
     }
     
     /* ========== 强制方形社交图标样式 ========== */
     /* 社交图标容器样式 - 使用!important确保覆盖 */
+    .social-icons {
+        text-align: center;
+        margin: 20px 0;
+    }
+    
     .social-icons .fa-stack {
         width: 44px !important;
         height: 44px !important;
         line-height: 44px !important;
         text-align: center !important;
-        margin: 0 5px !important;
-        border-radius: 6px !important; /* 统一圆角 */
-        -webkit-border-radius: 6px !important;
-        -moz-border-radius: 6px !important;
+        margin: 0 8px !important;
+        border-radius: 8px !important; /* 统一圆角 */
+        -webkit-border-radius: 8px !important;
+        -moz-border-radius: 8px !important;
+        display: inline-block;
     }
     
     .social-icons .fa-stack-2x {
-        border-radius: 6px !important; /* 与外层一致 */
-        -webkit-border-radius: 6px !important;
-        -moz-border-radius: 6px !important;
+        border-radius: 8px !important; /* 与外层一致 */
+        -webkit-border-radius: 8px !important;
+        -moz-border-radius: 8px !important;
         border: 1px solid var(--ios-gray-200) !important;
-        background: var(--ios-gray-50) !important;
+        background: white !important;
         transition: all 0.2s ease !important;
         width: 44px !important;
         height: 44px !important;
         line-height: 44px !important;
+        box-shadow: var(--ios-shadow) !important;
     }
     
     .social-icons .fa-stack-1x {
@@ -142,7 +160,7 @@
         background: var(--ios-blue) !important;
         border-color: var(--ios-blue) !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.12) !important;
+        box-shadow: var(--ios-shadow-hover) !important;
     }
     
     .social-icons .fa-stack:hover .fa-stack-1x {
@@ -156,77 +174,113 @@
     }
     
     /* 标签云样式优化 */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 15px 0;
+    }
+    
     .tags a {
         display: inline-block;
-        padding: 6px 12px;
-        background: var(--ios-gray-50);
+        padding: 6px 14px;
+        background: white;
         color: var(--ios-gray-800);
-        border-radius: 8px; /* 方形标签 */
+        border-radius: 8px;
         font-size: 14px;
         font-weight: 500;
-        margin: 0 4px 8px 0;
         border: 1px solid var(--ios-gray-200);
         transition: all 0.2s ease;
         text-decoration: none;
+        box-shadow: var(--ios-shadow);
     }
+    
     .tags a:hover {
         background: var(--ios-blue);
         color: white;
         border-color: var(--ios-blue);
-        transform: translateY(-1px);
-        box-shadow: var(--ios-shadow);
+        transform: translateY(-2px);
+        box-shadow: var(--ios-shadow-hover);
         text-decoration: none;
     }
     
     /* 内容容器间距优化 */
     .container {
-        padding-top: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
     }
     
     /* 公告栏样式优化 */
     #announcement-bar {
+        background: var(--ios-gray-50) !important;
+        padding: 15px 12px !important;
+        text-align: center !important;
+        border-bottom: 1px solid var(--ios-gray-200) !important;
+        position: relative !important;
+        z-index: 100 !important;
         margin-bottom: 25px !important;
+        box-shadow: var(--ios-shadow) !important;
+    }
+    
+    #announcement-bar span {
+        color: var(--ios-gray-800) !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        display: inline-block !important;
+        max-width: 90% !important;
+        line-height: 1.5 !important;
+    }
+    
+    #announcement-bar button {
+        margin-left: 12px !important;
+        background: var(--ios-gray-100) !important;
+        border: 1px solid var(--ios-gray-200) !important;
+        cursor: pointer !important;
+        color: var(--ios-gray-700) !important;
+        font-size: 16px !important;
+        width: 24px !important;
+        height: 24px !important;
+        border-radius: 50% !important;
+        vertical-align: middle !important;
+        transition: all 0.2s ease !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+    
+    #announcement-bar button:hover {
+        background: var(--ios-gray-200) !important;
+        transform: scale(1.1) !important;
+    }
+    
+    /* 页脚样式优化 */
+    .site-footer {
+        text-align: center;
+        padding: 25px 20px;
+        font-size: 13px;
+        color: var(--ios-gray-400);
+        border-top: 1px solid var(--ios-gray-200);
+        background: white;
+        margin-top: 30px;
+    }
+    
+    .site-footer a {
+        color: var(--ios-blue);
+        margin: 0 8px;
+    }
+    
+    .site-footer a:hover {
+        color: var(--ios-blue-dark);
+        text-decoration: underline;
     }
 </style>
 
 <body ontouchstart="">
 
 <!-- 优化的公告栏 -->
-<div id="announcement-bar" style="
-  background: var(--ios-gray-50); 
-  padding: 15px 12px; 
-  text-align: center; 
-  border-bottom: 1px solid var(--ios-gray-200);
-  position: relative;
-  z-index: 100;
-  margin-bottom: 20px;
-  box-shadow: var(--ios-shadow);
-">
-  <span style="
-    color: var(--ios-gray-800); 
-    font-size: 14px; 
-    font-weight: 400;
-    display: inline-block;
-    max-width: 90%;
-    line-height: 1.5;
-  ">
-    👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com" style="color: var(--ios-blue); font-weight: 500; text-decoration: none;">zhugezhi7711@qq.com</a>（回复及时）
-  </span>
-  <button onclick="this.parentElement.style.display='none'" style="
-    margin-left: 12px; 
-    background: var(--ios-gray-100); 
-    border: 1px solid var(--ios-gray-200); 
-    cursor: pointer; 
-    color: var(--ios-gray-700); 
-    font-size: 16px; 
-    width: 24px; 
-    height: 24px;
-    border-radius: 50%;
-    vertical-align: middle;
-    transition: all 0.2s ease;
-    padding: 0;
-    line-height: 1;
-  ">×</button>
+<div id="announcement-bar">
+  <span>👋 欢迎交流各种问题！邮箱：<a href="mailto:zhugezhi7711@qq.com">zhugezhi7711@qq.com</a>（回复及时）</span>
+  <button onclick="this.parentElement.style.display='none'">×</button>
 </div>
 
     {% include nav.html %}
@@ -236,8 +290,8 @@
     {% include footer.html %}
 
     <!-- iOS风格页脚信息 -->
-    <div style="text-align: center; padding: 25px 20px; font-size: 13px; color: var(--ios-gray-700); border-top: 1px solid var(--ios-gray-200); background: var(--ios-gray-50); margin-top: 30px;">
-        © 2025 Lorne的博客 | <a href="/about/" style="color: var(--ios-blue);">关于我</a> | <a href="/sitemap.xml" style="color: var(--ios-blue);">网站地图</a>
+    <div class="site-footer">
+        © 2025 Lorne的博客 | <a href="/about/">关于我</a> | <a href="/sitemap.xml">网站地图</a>
     </div>
 
 <!-- Image to hack wechat -->
