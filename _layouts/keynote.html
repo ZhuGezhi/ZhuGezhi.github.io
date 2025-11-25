@@ -4,18 +4,33 @@ layout: default
 
 <!-- iOS风格Keynote演示样式 -->
 <style type="text/css">
-    /* Keynote容器样式 */
+    /* 基础变量继承全局定义，确保风格统一 */
+    :root {
+        --ios-gray-50: #f9fafb;
+        --ios-gray-100: #f3f4f6;
+        --ios-gray-200: #e5e7eb;
+        --ios-gray-300: #d1d5db;
+        --ios-gray-500: #6b7280;
+        --ios-gray-700: #374151;
+        --ios-gray-800: #1f2937;
+        --ios-blue: #007aff;
+        --ios-yellow: #ffcc00;
+        --ios-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        --ios-shadow-hover: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    /* Keynote容器样式 - 避免与公告栏/导航栏重叠 */
     .keynote-container {
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+        margin: 30px auto; /* 与上方公告栏保持间距 */
+        padding: 0 15px;
     }
     
-    /* 幻灯片样式 */
+    /* 幻灯片样式 - 方形设计（极小圆角）、边界清晰 */
     .slide {
         min-height: 70vh;
         background: white;
-        border-radius: 16px;
+        border-radius: 8px; /* 极小圆角，符合方形偏好 */
         box-shadow: var(--ios-shadow);
         padding: 40px;
         margin-bottom: 30px;
@@ -24,10 +39,11 @@ layout: default
         justify-content: center;
         position: relative;
         overflow: hidden;
+        border: 1px solid var(--ios-gray-200); /* 清晰边界 */
     }
     
     .slide.fullscreen {
-        min-height: 90vh;
+        min-height: 85vh; /* 全屏模式高度优化 */
     }
     
     .slide.has-image {
@@ -50,14 +66,17 @@ layout: default
     .slide-content {
         position: relative;
         z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
     }
     
-    /* 幻灯片标题 */
+    /* 幻灯片标题样式 - 清晰层级 */
     .slide h1 {
         font-size: 3rem;
         font-weight: 700;
         margin-bottom: 2rem;
         color: var(--ios-gray-800);
+        line-height: 1.2;
     }
     
     .slide.has-image h1 {
@@ -77,7 +96,7 @@ layout: default
         text-shadow: 0 1px 8px rgba(0,0,0,0.3);
     }
     
-    /* 内容样式 */
+    /* 内容样式 - 排版整齐 */
     .slide p {
         font-size: 1.2rem;
         line-height: 1.8;
@@ -90,7 +109,7 @@ layout: default
         text-shadow: 0 1px 5px rgba(0,0,0,0.2);
     }
     
-    /* 列表样式 */
+    /* 列表样式 - 方形风格适配 */
     .slide ul {
         list-style: none;
         padding: 0;
@@ -110,11 +129,11 @@ layout: default
     }
     
     .slide li::before {
-        content: "•";
+        content: "▌"; /* 方形指示符，替代圆形 */
         position: absolute;
         left: 0;
         color: var(--ios-blue);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         line-height: 1;
     }
     
@@ -122,39 +141,68 @@ layout: default
         color: white;
     }
     
-    /* 导航控制 */
+    /* 代码块样式 - 方形设计 */
+    .slide pre {
+        background: var(--ios-gray-800);
+        color: white;
+        padding: 16px;
+        border-radius: 8px; /* 极小圆角 */
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border: 1px solid var(--ios-gray-700);
+    }
+    
+    .slide code {
+        background: var(--ios-gray-100);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 0.9em;
+        color: var(--ios-gray-800);
+    }
+    
+    .slide.has-image code {
+        background: rgba(255,255,255,0.2);
+        color: white;
+    }
+    
+    /* 导航控制 - 方形按钮，清晰边界 */
     .slide-navigation {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        margin: 20px auto;
+        max-width: 900px;
     }
     
     .nav-button {
         padding: 12px 24px;
-        background: var(--ios-blue);
-        color: white;
-        border: none;
-        border-radius: 8px;
+        background: white;
+        color: var(--ios-blue);
+        border: 1px solid var(--ios-blue); /* 清晰边框 */
+        border-radius: 8px; /* 极小圆角 */
         font-size: 1rem;
         cursor: pointer;
         transition: all 0.2s ease;
+        font-weight: 600;
     }
     
     .nav-button:hover {
-        background: #0066cc;
-        transform: translateY(-2px);
+        background: var(--ios-blue);
+        color: white;
         box-shadow: var(--ios-shadow-hover);
+        transform: translateY(-1px);
     }
     
     .nav-button:disabled {
-        background: var(--ios-gray-200);
+        background: var(--ios-gray-100);
         color: var(--ios-gray-500);
+        border-color: var(--ios-gray-200);
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
     }
     
-    /* 页码指示器 */
+    /* 页码指示器 - 方形设计 */
     .slide-indicators {
         display: flex;
         justify-content: center;
@@ -165,18 +213,20 @@ layout: default
     .indicator {
         width: 12px;
         height: 12px;
-        border-radius: 50%;
+        border-radius: 3px; /* 方形指示器 */
         background: var(--ios-gray-200);
         cursor: pointer;
         transition: all 0.2s ease;
+        border: 1px solid var(--ios-gray-300);
     }
     
     .indicator.active {
         background: var(--ios-blue);
+        border-color: var(--ios-blue);
         transform: scale(1.2);
     }
     
-    /* 响应式设计 */
+    /* 响应式设计 - 确保移动端适配 */
     @media (max-width: 768px) {
         .slide {
             padding: 20px;
@@ -194,6 +244,11 @@ layout: default
         .slide p {
             font-size: 1rem;
         }
+        
+        .nav-button {
+            padding: 10px 18px;
+            font-size: 0.9rem;
+        }
     }
 </style>
 
@@ -201,18 +256,19 @@ layout: default
 <div class="keynote-container">
     {{ content }}
     
-    <!-- 幻灯片导航 -->
+    <!-- 幻灯片导航指示器 -->
     <div class="slide-indicators" id="slideIndicators">
         <!-- 由JavaScript动态生成指示器 -->
     </div>
     
+    <!-- 幻灯片导航按钮 -->
     <div class="slide-navigation">
         <button class="nav-button" id="prevSlide" disabled>上一页</button>
         <button class="nav-button" id="nextSlide">下一页</button>
     </div>
 </div>
 
-<!-- 幻灯片控制脚本 -->
+<!-- 幻灯片控制脚本 - 优化交互体验 -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // 获取所有幻灯片
@@ -223,7 +279,7 @@ layout: default
         
         let currentSlide = 0;
         
-        // 创建指示器
+        // 创建方形指示器
         slides.forEach((_, index) => {
             const indicator = document.createElement('div');
             indicator.className = 'indicator' + (index === 0 ? ' active' : '');
@@ -237,7 +293,7 @@ layout: default
                 slide.style.display = i === index ? 'flex' : 'none';
             });
             
-            // 更新指示器
+            // 更新指示器状态
             document.querySelectorAll('.indicator').forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
             });
@@ -249,12 +305,15 @@ layout: default
             currentSlide = index;
         }
         
-        // 跳转到指定幻灯片
+        // 跳转到指定幻灯片（带平滑滚动）
         function goToSlide(index) {
             if (index >= 0 && index < slides.length) {
                 showSlide(index);
-                // 平滑滚动到顶部
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // 平滑滚动到幻灯片顶部，避免与公告栏重叠
+                window.scrollTo({ 
+                    top: document.querySelector('.keynote-container').offsetTop - 20, 
+                    behavior: 'smooth' 
+                });
             }
         }
         
@@ -268,11 +327,13 @@ layout: default
             goToSlide(currentSlide - 1);
         });
         
-        // 键盘导航
+        // 键盘导航（左右箭头/空格）
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault(); // 阻止空格默认滚动
                 goToSlide(currentSlide + 1);
             } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
                 goToSlide(currentSlide - 1);
             }
         });
