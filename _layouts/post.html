@@ -8,15 +8,9 @@ layout: default
 
 <!-- Post Header -->
 <style type="text/css">
-    /* 文章头部样式 */
     header.intro-header{
         position: relative;
-        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}');
-        background-size: cover;
-        background-position: center;
-        margin-bottom: 30px;
-        border-radius: 16px;
-        overflow: hidden;
+        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
     }
 
     {% if page.header-mask %}
@@ -27,313 +21,8 @@ layout: default
         background: rgba(0,0,0, {{ page.header-mask }});
     }
     {% endif %}
-
-    /* 文章标题区域 */
-    .post-heading {
-        position: relative;
-        z-index: 1;
-        padding: 80px 20px;
-        text-align: center;
-        color: white;
-    }
-    .post-heading h1 {
-        font-size: 2.8rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        margin-bottom: 1.5rem;
-    }
-    .post-heading .subheading {
-        font-size: 1.4rem;
-        color: rgba(255,255,255,0.9);
-        font-weight: 400;
-        margin-bottom: 1rem;
-    }
-    .post-heading .meta {
-        font-size: 1rem;
-        color: rgba(255,255,255,0.8);
-    }
-
-    /* 文章标签样式 */
-    .post-heading .tags {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 2rem;
-    }
-    .post-heading .tags .tag {
-        padding: 8px 16px;
-        background: rgba(255,255,255,0.2);
-        color: white;
-        border-radius: 12px;
-        font-size: 14px;
-        text-decoration: none;
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.3);
-        transition: all 0.3s ease;
-    }
-    .post-heading .tags .tag:hover {
-        background: rgba(255,255,255,0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    /* 文章内容区域 */
-    .post-container {
-        color: var(--ios-gray-800);
-        line-height: 1.8;
-        font-size: 16px;
-        background: white;
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: var(--ios-shadow);
-        margin-bottom: 20px;
-    }
-    .post-container h1, .post-container h2, .post-container h3, 
-    .post-container h4, .post-container h5, .post-container h6 {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: var(--ios-gray-800);
-    }
-    .post-container p {
-        margin-bottom: 1.2rem;
-    }
-    .post-container img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 1.5rem 0;
-    }
-    .post-container a {
-        color: var(--ios-blue);
-        text-decoration: none;
-        font-weight: 500;
-    }
-    .post-container a:hover {
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
-
-    /* 分页导航样式 */
-    .pager {
-        margin: 30px 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-    }
-    .pager li {
-        display: inline-block;
-    }
-    .pager li a {
-        display: block;
-        padding: 12px 24px;
-        background: white;
-        border: 1px solid var(--ios-gray-200);
-        border-radius: 12px;
-        color: var(--ios-gray-800);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: var(--ios-shadow);
-    }
-    .pager li a:hover {
-        background: var(--ios-blue);
-        color: white;
-        border-color: var(--ios-blue);
-        transform: translateY(-3px);
-        box-shadow: var(--ios-shadow-hover);
-    }
-    .pager li.previous a {
-        margin-right: auto;
-    }
-    .pager li.next a {
-        margin-left: auto;
-    }
-
-    /* 侧边栏样式 */
-    .sidebar-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    section {
-        background: white;
-        border-radius: 16px;
-        box-shadow: var(--ios-shadow);
-        padding: 20px;
-        transition: transform 0.2s ease;
-    }
-    section:hover {
-        transform: translateY(-2px);
-    }
-
-    /* 标签云样式 */
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 15px;
-    }
-    .tags a {
-        padding: 8px 16px;
-        background: var(--ios-gray-50);
-        color: var(--ios-gray-800);
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: 1px solid var(--ios-gray-200);
-    }
-    .tags a:hover {
-        background: var(--ios-blue);
-        color: white;
-        border-color: var(--ios-blue);
-        transform: translateY(-2px);
-        box-shadow: var(--ios-shadow);
-    }
-
-    /* 目录样式 */
-    .catalog-container {
-        background: white;
-        border-radius: 16px;
-        box-shadow: var(--ios-shadow);
-        padding: 20px;
-    }
-    .side-catalog h5 {
-        margin: 0 0 15px 0;
-        color: var(--ios-gray-800);
-        font-weight: 600;
-        font-size: 18px;
-    }
-    .side-catalog h5 a {
-        color: inherit;
-        text-decoration: none;
-    }
-    .side-catalog h5 a:hover {
-        color: var(--ios-blue);
-    }
-    .catalog-body {
-        list-style: none;
-        padding: 0;
-        font-size: 14px;
-    }
-    .catalog-body li {
-        margin-bottom: 10px;
-        padding-left: 15px;
-        position: relative;
-    }
-    .catalog-body li:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 10px;
-        width: 6px;
-        height: 6px;
-        background: var(--ios-blue);
-        border-radius: 50%;
-    }
-    .catalog-body a {
-        color: var(--ios-gray-700);
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-    .catalog-body a:hover {
-        color: var(--ios-blue);
-        padding-left: 5px;
-    }
-
-    /* 友情链接样式 */
-    .list-inline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 0;
-        margin: 15px 0 0 0;
-        list-style: none;
-    }
-    .list-inline li a {
-        padding: 8px 16px;
-        font-size: 14px;
-        color: var(--ios-gray-700);
-        background: var(--ios-gray-50);
-        border-radius: 12px;
-        border: 1px solid var(--ios-gray-200);
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    .list-inline li a:hover {
-        background: var(--ios-gray-100);
-        color: var(--ios-blue);
-        transform: translateY(-2px);
-        box-shadow: var(--ios-shadow);
-    }
-
-    /* 评论区样式 */
-    .giscus-container {
-        margin-top: 30px;
-        padding: 20px;
-        background: white;
-        border-radius: 16px;
-        box-shadow: var(--ios-shadow);
-    }
-    .comment {
-        margin-top: 30px;
-        padding: 20px;
-        background: white;
-        border-radius: 16px;
-        box-shadow: var(--ios-shadow);
-    }
-
-    /* 标题样式统一 */
-    h5 {
-        margin: 0 0 15px 0;
-        color: var(--ios-gray-800);
-        font-weight: 600;
-        font-size: 18px;
-    }
-    h5 a {
-        color: inherit;
-        text-decoration: none;
-    }
-    h5 a:hover {
-        color: var(--ios-blue);
-    }
-
-    /* anchor-js 样式优化 */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-            color: var(--ios-blue);
-        }
-    }
-
-    /* 响应式布局优化 */
-    @media (max-width: 768px) {
-        .post-heading h1 {
-            font-size: 2rem;
-        }
-        .post-container {
-            padding: 20px;
-        }
-        .pager {
-            flex-direction: column;
-            gap: 10px;
-        }
-        .pager li {
-            width: 100%;
-        }
-        .pager li a {
-            width: 100%;
-            text-align: center;
-        }
-    }
 </style>
-
-<header class="intro-header">
+<header class="intro-header" >
     <div class="header-mask"></div>
     <div class="container">
         <div class="row">
@@ -348,9 +37,9 @@ layout: default
                     {% comment %}
                         always create a h2 for keeping the margin , Hux
                     {% endcomment %}
-                    {% if page.subtitle %}
+                    {% comment %} if page.subtitle {% endcomment %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
-                    {% endif %}
+                    {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
             </div>
@@ -393,7 +82,7 @@ layout: default
                 </ul>
 
 <!-- Giscus评论start  -->
-<div class="giscus-container">
+<div class="giscus-container" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
 <script src="https://giscus.app/client.js"
         data-repo="ZhuGezhi/zhugezhi.github.io"
         data-repo-id="R_kgDOQa9DDg"
@@ -447,11 +136,12 @@ layout: default
 
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
-                <section class="featured-tags-section">
+                <section>
+                    <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				{% for tag in site.tags %}
-                            {% if tag[1].size > site.featured-condition-size %}
+                            {% if tag[1].size > {{site.featured-condition-size}} %}
                 				<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
                                     {{ tag[0] }}
                                 </a>
@@ -463,14 +153,13 @@ layout: default
 
                 <!-- Friends Blog -->
                 {% if site.friends %}
-                <section>
-                    <h5>FRIENDS</h5>
-                    <ul class="list-inline">
-                        {% for friend in site.friends %}
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    {% for friend in site.friends %}
                         <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                    {% endfor %}
+                </ul>
                 {% endif %}
             </div>
         </div>
@@ -520,4 +209,15 @@ layout: default
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })
 </script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 {% endif %}
