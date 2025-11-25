@@ -1,0 +1,268 @@
+<!-- 侧边栏组件 - 包含个人信息和社交链接 -->
+<div class="sidebar">
+    <!-- 个人信息区域 -->
+    <section class="about-me">
+        <h3 class="section-title">ABOUT ME</h3>
+        
+        <!-- 头像 -->
+        <div class="avatar-container">
+            <img src="{{ site.avatar | default: '/img/avatar-default.png' }}" 
+                 alt="Profile Picture" 
+                 class="avatar" 
+                 onerror="this.src='/img/avatar-default.png'">
+        </div>
+        
+        <!-- 个人名言 -->
+        <p class="motto">
+            {{ site.motto | default: "Knowledge and action unite; action validates knowledge." }}
+        </p>
+        
+        <!-- 社交图标 -->
+        <div class="social-links">
+            {% if site.github_username %}
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" class="social-icon github" aria-label="GitHub">
+                <i class="fa fa-github"></i>
+            </a>
+            {% endif %}
+            
+            {% if site.zhihu_username %}
+            <a href="https://www.zhihu.com/people/{{ site.zhihu_username }}" target="_blank" class="social-icon zhihu" aria-label="知乎">
+                <span>知</span>
+            </a>
+            {% endif %}
+            
+            {% if site.weibo_username %}
+            <a href="http://weibo.com/{{ site.weibo_username }}" target="_blank" class="social-icon weibo" aria-label="微博">
+                <i class="fa fa-weibo"></i>
+            </a>
+            {% endif %}
+            
+            {% if site.twitter_username %}
+            <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" class="social-icon twitter" aria-label="Twitter">
+                <i class="fa fa-twitter"></i>
+            </a>
+            {% endif %}
+        </div>
+        
+        <!-- 邮箱 -->
+        {% if site.email %}
+        <p class="email">
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </p>
+        {% endif %}
+    </section>
+    
+    <!-- 标签区域 -->
+    {% if site.featured-tags %}
+    <section class="featured-tags">
+        <h3 class="section-title">FEATURED TAGS</h3>
+        <div class="tags">
+            {% for tag in site.tags %}
+                {% if tag[1].size > site.featured-condition-size %}
+                    <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" class="tag">{{ tag[0] }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- 友情链接区域 -->
+    {% if site.friends.size > 0 %}
+    <section class="friends">
+        <h3 class="section-title">FRIENDS</h3>
+        <div class="friend-links">
+            {% for friend in site.friends %}
+            <a href="{{ friend.href }}" target="_blank" class="friend-link">{{ friend.title }}</a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+
+<style>
+    /* 侧边栏基础样式 */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--ios-gray-500);
+        margin: 0 0 16px 0;
+        letter-spacing: 0.5px;
+    }
+    
+    /* 个人信息样式 */
+    .about-me {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--ios-shadow);
+        text-align: center;
+    }
+    
+    /* 头像样式 */
+    .avatar-container {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 16px;
+        position: relative;
+    }
+    
+    .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--ios-gray-50);
+        box-shadow: var(--ios-shadow);
+        transition: transform 0.3s ease;
+    }
+    
+    .avatar:hover {
+        transform: scale(1.05);
+    }
+    
+    /* 名言样式 */
+    .motto {
+        font-size: 16px;
+        color: var(--ios-gray-700);
+        line-height: 1.6;
+        margin: 0 0 24px 0;
+        font-style: italic;
+    }
+    
+    /* 社交图标样式 */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ios-gray-50);
+        border: 1px solid var(--ios-gray-200);
+        border-radius: 10px;
+        color: var(--ios-gray-700);
+        font-size: 18px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .social-icon:hover {
+        background: var(--ios-blue);
+        color: white;
+        border-color: var(--ios-blue);
+        transform: translateY(-2px);
+        box-shadow: var(--ios-shadow-hover);
+    }
+    
+    .social-icon.zhihu span {
+        font-weight: bold;
+    }
+    
+    /* 邮箱样式 */
+    .email {
+        margin: 0;
+        font-size: 14px;
+    }
+    
+    .email a {
+        color: var(--ios-gray-600);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .email a:hover {
+        color: var(--ios-blue);
+        text-decoration: underline;
+    }
+    
+    /* 标签区域样式 */
+    .featured-tags {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .tag {
+        padding: 6px 12px;
+        background: var(--ios-gray-50);
+        border: 1px solid var(--ios-gray-200);
+        border-radius: 16px;
+        color: var(--ios-gray-700);
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .tag:hover {
+        background: var(--ios-blue);
+        color: white;
+        border-color: var(--ios-blue);
+    }
+    
+    /* 友情链接样式 */
+    .friends {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .friend-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .friend-link {
+        padding: 8px 16px;
+        background: var(--ios-gray-50);
+        border: 1px solid var(--ios-gray-200);
+        border-radius: 8px;
+        color: var(--ios-gray-700);
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .friend-link:hover {
+        background: var(--ios-gray-100);
+        color: var(--ios-blue);
+        transform: translateY(-1px);
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        .about-me, .featured-tags, .friends {
+            padding: 18px;
+        }
+        
+        .avatar-container {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .motto {
+            font-size: 15px;
+        }
+    }
+</style>
