@@ -6,13 +6,14 @@ layout: default
     /* 关键修改：移除所有文本下划线 */
     .post-container a {
         color: var(--accent-color);
-        text-decoration: none; /* 移除下划线 */
+        text-decoration: none;
         transition: var(--transition);
+        border-bottom: 1px solid transparent;
     }
     
     .post-container a:hover {
-        /* 保留悬停效果但不加下划线 */
-        color: #0066cc;
+        color: #2b6cb0;
+        border-bottom: 1px solid #2b6cb0;
     }
     
     /* 移除文章标题下划线 */
@@ -21,29 +22,54 @@ layout: default
         text-decoration: none !important;
     }
     
-    /* 文章页面不显示侧边栏（关键修改） */
-    .container {
+    /* 文章页面布局调整 */
+    .post-page-container {
         display: flex;
         justify-content: center;
+        padding: 0 15px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
     
-    .main-content {
-        max-width: 800px; /* 限制文章最大宽度，提升可读性 */
+    .post-main-content {
+        max-width: 800px;
         width: 100%;
     }
     
-    .sidebar {
-        display: none; /* 隐藏侧边栏 */
+    /* 标签样式 */
+    .tags {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
     }
     
-    /* 以下是其他保留样式（保持之前的高级感设计） */
+    .tag {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+    }
+    
+    .tag:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    /* 文章头部样式 */
     .intro-header {
         position: relative;
         background-size: cover;
         background-position: center;
         height: 400px;
         margin-bottom: 40px;
-        border-radius: 12px;
+        border-radius: var(--border-radius, 8px);
         overflow: hidden;
         box-shadow: var(--shadow);
     }
@@ -59,14 +85,16 @@ layout: default
         z-index: 0;
     }
     
-    .intro-header .container {
+    .intro-header .header-inner {
         position: relative;
         z-index: 1;
-        padding: 60px 0;
         height: 100%;
         display: flex;
         align-items: center;
         margin: 0 auto;
+        max-width: 1200px;
+        width: 100%;
+        padding: 0 20px;
     }
     
     .post-heading {
@@ -75,6 +103,7 @@ layout: default
         max-width: 800px;
         margin: 0 auto;
         padding: 0 20px;
+        width: 100%;
     }
     
     .post-heading h1 {
@@ -82,6 +111,7 @@ layout: default
         font-weight: 700;
         margin-bottom: 1.5rem;
         line-height: 1.3;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     .post-heading .subheading {
@@ -89,6 +119,7 @@ layout: default
         color: rgba(255,255,255,0.9);
         margin-bottom: 1.5rem;
         font-weight: 300;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
     
     .post-heading .meta {
@@ -98,11 +129,13 @@ layout: default
         align-items: center;
         justify-content: center;
         gap: 8px;
+        flex-wrap: wrap;
     }
     
+    /* 文章内容容器 */
     .post-container {
         background: white;
-        border-radius: 12px;
+        border-radius: var(--border-radius, 8px);
         padding: 40px;
         box-shadow: var(--shadow);
         margin-bottom: 40px;
@@ -111,69 +144,202 @@ layout: default
         transition: var(--transition);
     }
     
-    /* 其他样式保持不变... */
+    /* 文章内容排版 */
+    .post-container h2 {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        border-left: 4px solid var(--accent-color);
+        padding-left: 1rem;
+    }
+    
+    .post-container h3 {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--primary-color);
+    }
+    
+    .post-container p {
+        margin-bottom: 1.2rem;
+        color: var(--secondary-color);
+    }
+    
+    .post-container img {
+        max-width: 100%;
+        border-radius: var(--border-radius, 8px);
+        margin: 1.5rem auto;
+        display: block;
+        box-shadow: var(--shadow);
+    }
+    
+    /* 分页导航样式 */
+    .pager {
+        list-style: none;
+        padding: 0;
+        margin: 40px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    
+    .pager li {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .pager a {
+        display: block;
+        padding: 20px;
+        background: white;
+        border-radius: var(--border-radius, 8px);
+        box-shadow: var(--shadow);
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    
+    .pager a:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+        border-bottom: none;
+    }
+    
+    .previous a {
+        text-align: left;
+    }
+    
+    .next a {
+        text-align: right;
+    }
+    
+    .pager span {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+    }
+    
+    /* 评论区容器 */
+    .giscus-container {
+        background: white;
+        border-radius: var(--border-radius, 8px);
+        padding: 20px;
+        box-shadow: var(--shadow);
+        margin-bottom: 40px;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .intro-header {
+            height: 300px;
+        }
+        
+        .post-heading h1 {
+            font-size: 1.8rem;
+        }
+        
+        .post-heading .subheading {
+            font-size: 1.1rem;
+        }
+        
+        .post-container {
+            padding: 20px;
+        }
+        
+        .pager {
+            flex-direction: column;
+        }
+        
+        .pager li {
+            flex: none;
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .intro-header {
+            height: 250px;
+        }
+        
+        .post-heading h1 {
+            font-size: 1.5rem;
+        }
+    }
 </style>
 
 <!-- 文章头部 -->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img | default: '/img/post-bg.jpg' }}{% endif %}')">
-    <div class="container">
+    <div class="header-inner">
         <div class="post-heading">
             <div class="tags">
                 {% for tag in page.tags %}
-                <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}">{{ tag }}</a>
+                <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}" aria-label="查看标签: {{ tag }}">{{ tag }}</a>
                 {% endfor %}
             </div>
             <h1>{{ page.title }}</h1>
             {% if page.subtitle %}
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
-            <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}Lorne{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+            <span class="meta">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                {% if page.author %}{{ page.author }}{% else %}Lorne{% endif %}
+                <span style="margin: 0 8px;">•</span>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                {{ page.date | date: "%B %-d, %Y" }}
+            </span>
         </div>
     </div>
 </header>
 
 <!-- 文章内容 -->
 <article>
-    <div class="post-container">
-        {{ content }}
-    </div>
+    <div class="post-page-container">
+        <div class="post-main-content">
+            <div class="post-container">
+                {{ content }}
+            </div>
 
-    <!-- 分页导航、评论区等保持不变 -->
-    <ul class="pager">
-        {% if page.previous.url %}
-        <li class="previous">
-            <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.previous.title}}">
-                ← Previous Post<br>
-                <span>{{page.previous.title}}</span>
-            </a>
-        </li>
-        {% endif %}
-        {% if page.next.url %}
-        <li class="next">
-            <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.next.title}}">
-                Next Post →<br>
-                <span>{{page.next.title}}</span>
-            </a>
-        </li>
-        {% endif %}
-    </ul>
+            <!-- 分页导航 -->
+            <ul class="pager">
+                {% if page.previous.url %}
+                <li class="previous">
+                    <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.previous.title}}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 上一篇
+                        <span>{{page.previous.title}}</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% if page.next.url %}
+                <li class="next">
+                    <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" title="{{page.next.title}}">
+                        下一篇 <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        <span>{{page.next.title}}</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
 
-    <div class="giscus-container">
-        <!-- 评论区代码保持不变 -->
-        <script src="https://giscus.app/client.js"
-                data-repo="ZhuGezhi/zhugezhi.github.io"
-                data-repo-id="R_kgDOQa9DDg"
-                data-category="General"
-                data-category-id="DIC_kwDOQa9DDs4Cy4Sx"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="preferred_color_scheme"
-                data-lang="zh-CN"
-                crossorigin="anonymous"
-                async>
-        </script>
+            <!-- 评论区 -->
+            <div class="giscus-container">
+                <script src="https://giscus.app/client.js"
+                        data-repo="ZhuGezhi/zhugezhi.github.io"
+                        data-repo-id="R_kgDOQa9DDg"
+                        data-category="General"
+                        data-category-id="DIC_kwDOQa9DDs4Cy4Sx"
+                        data-mapping="pathname"
+                        data-strict="0"
+                        data-reactions-enabled="1"
+                        data-emit-metadata="0"
+                        data-input-position="top"
+                        data-theme="preferred_color_scheme"
+                        data-lang="zh-CN"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+        </div>
     </div>
 </article>
