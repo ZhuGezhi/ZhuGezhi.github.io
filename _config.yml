@@ -12,7 +12,7 @@ github_repo: "https://github.com/ZhuGezhi/zhugezhi.github.io.git" # 代码仓库
 # Sidebar settings
 sidebar: true                           # 启用侧边栏
 sidebar-about-description: "Knowledge and action unite; action validates knowledge."
-sidebar-avatar: "img/about-LZ-gentle.JPG"      # 侧边栏头像路径
+sidebar-avatar: "img/about-LZ-gentle.jpg"      # 侧边栏头像路径
 
 # SNS settings
 RSS: false
