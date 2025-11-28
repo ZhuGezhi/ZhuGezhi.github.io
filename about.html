@@ -6,198 +6,192 @@ header-img: "img/post-bg-rwd.jpg"
 permalink: /about/
 ---
 
-<!-- Language Selector -->
-<select class="sel-lang" onchange="onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英文 English </option>
-</select>
+<div class="about-container">
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button id="btn-zh" class="lang-btn active">中文</button>
+        <button id="btn-en" class="lang-btn">English</button>
+    </div>
 
-<!-- Chinese Version -->
-<div class="zh post-container">
+    <!-- Chinese Version -->
+    <div id="content-zh" class="content-section">
+        <blockquote>
+            <p>心外无物 心外无理<br>
+            知是行之始 行是知之成</p>
+        </blockquote>
 
-    <!--copied from markdown -->
-    <blockquote><p>心外无物 心外无理<br>
-   知是行之始 行是知之成</p></blockquote>
+        <p>Hey，我是<strong>卤汁(Lorne)</strong>，INFJ-T,统计学在读本科生。</p>
 
-    <p>Hey，我是<strong>卤汁(Lorne)</strong>，INFJ-T,统计学在读本科生。</p>
+        <p>爱好：胡思乱想、摄影、羽毛球。</p>
 
-    <p>爱好：胡思乱想、摄影、羽毛球。</p>
+        <p>突然想搭建一个属于自己的博客，所以借助GitHub上@qiuboying的快速教程，成功搭建了L's Thought Hub。原创博主的GitHub主页是<a href="https://github.com/qiubaiying" target="_blank">👉GitHub·BY</a> 与 简书主页<a href="http://www.jianshu.com/u/e71990ada2fd" target="_blank">👉BY</a>。</p>
+        
+        <h5>Talks</h5>
 
-    <p>突然想搭建一个属于自己的博客，所以借助GitHub上@qiuboying的快速教程，成功搭建了L's Thought Hub。原创博主的GitHub主页是<a href="https://github.com/qiubaiying">👉GitHub·BY</a> 与 简书主页<a href="http://www.jianshu.com/u/e71990ada2fd">👉BY</a>。</p>
+        <ul>
+            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            <li><a href="http://jekyll.com.cn/" target="_blank">jekyll</a></li>
+            <li><a href="http://huangxuan.me/" target="_blank">Hux</a></li> 
+            <li><a href="https://analytics.google.com/analytics" target="_blank">Google Analytics</a></li>
+        </ul>
+    </div>
 
-    <p></p>
-    
-    <h5>Talks</h5>
+    <!-- English Version -->
+    <div id="content-en" class="content-section" style="display: none;">
+        <blockquote>
+            <p>Nothing exists outside the mind; no truth exists outside the mind.<br>
+            Knowledge is the beginning of action; action is the completion of knowledge.</p>
+        </blockquote>
 
-    <ul>
-        <li><a href="https://github.com">GitHub</a></li>
-        <li><a href="http://jekyll.com.cn/">jekyll</a></li>
-        <li><a href="http://huangxuan.me/">Hux</a></li> 
-        <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
-    </ul>
+        <p>Hi, I am <strong>Lorne</strong>, an INFJ-T undergraduate student majoring in Statistics.</p>
+
+        <p>This is my personal blog, built with GitHub Pages and Jekyll using the quick tutorial by @qiubaiying on GitHub. 👉 <a href="https://github.com/qiubaiying" target="_blank">Github·BY</a>.</p>
+        
+        <p>I am an enthusiast of mind-wandering, photography, and badminton.</p>
+
+        <h5>Talks</h5>
+
+        <ul>
+            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            <li><a href="http://jekyll.com.cn/" target="_blank">Jekyll</a></li>
+            <li><a href="https://pages.github.com/" target="_blank">GitHub Pages</a></li>
+            <li><a href="https://zhugezhi.icu/" target="_blank">My Blog</a></li>
+        </ul>
+    </div>
 </div>
 
-<!-- English Version -->
-<div class="en post-container">
-    <blockquote><p>Nothing exists outside the mind; no truth exists outside the mind.<br>
-    Knowledge is the beginning of action; action is the completion of knowledge.</p></blockquote>
-
-    <p>Hi, I am <strong>Lorne</strong>, an INFJ-T undergraduate student majoring in Statistics.</p>
-
-    <p>This is my personal blog, built with GitHub Pages and Jekyll using the quick tutorial by @qiubaiying on GitHub. 👉 <a href="https://github.com/qiubaiying">Github·BY</a>.</p>
-    
-    <p>I am an enthusiast of mind-wandering, photography, and badminton.</p>
-
-    <h5>Talks</h5>
-
-    <ul>
-        <li><a href="https://github.com">GitHub</a></li>
-        <li><a href="http://jekyll.com.cn/">Jekyll</a></li>
-        <li><a href="https://pages.github.com/">GitHub Pages</a></li>
-        <li><a href="https://zhugezhi.icu/">My Blog</a></li>
-    </ul>
-</div>
-
-<!-- Handle Language Change -->
 <script type="text/javascript">
-    // get nodes
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    var $select = document.querySelector("select");
+    // 简单的语言切换功能，避免复杂的hash监听
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnZh = document.getElementById('btn-zh');
+        const btnEn = document.getElementById('btn-en');
+        const contentZh = document.getElementById('content-zh');
+        const contentEn = document.getElementById('content-en');
 
-    // bind hashchange event
-    window.addEventListener('hashchange', _render);
+        btnZh.addEventListener('click', function() {
+            contentZh.style.display = 'block';
+            contentEn.style.display = 'none';
+            btnZh.classList.add('active');
+            btnEn.classList.remove('active');
+        });
 
-    // handle render
-    function _render(){
-        var _hash = window.location.hash;
-        // en
-        if(_hash == "#en"){
-            $select.selectedIndex = 1;
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        // zh by default
-        }else{
-            // not trigger onChange, otherwise cause a loop call.
-            $select.selectedIndex = 0;
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }
-    }
-
-    // handle select change
-    function onLanChange(index){
-        if(index == 0){
-            window.location.hash = "#zh"
-        }else{
-            window.location.hash = "#en"
-        }
-    }
-
-    // init
-    _render();
+        btnEn.addEventListener('click', function() {
+            contentZh.style.display = 'none';
+            contentEn.style.display = 'block';
+            btnZh.classList.remove('active');
+            btnEn.classList.add('active');
+        });
+    });
 </script>
 
 <style type="text/css">
-    /* 语言选择器样式 */
-    .sel-lang {
-        margin-bottom: 20px;
-        padding: 8px 12px;
-        border-radius: var(--border-radius, 8px);
-        border: 1px solid var(--border-color);
-        background: white;
-        color: var(--primary-color);
-        font-size: 16px;
-    }
-    
-    /* 中英文内容区块 */
-    .zh, .en {
-        margin-bottom: 20px;
+    /* 基础容器样式 */
+    .about-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         line-height: 1.8;
+        color: #333;
     }
-    
-    .en {
-        display: none;
+
+    /* 语言选择器样式 */
+    .language-selector {
+        margin-bottom: 30px;
+        display: flex;
+        gap: 10px;
     }
-    
+
+    .lang-btn {
+        padding: 8px 20px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .lang-btn.active {
+        background: #4299e1;
+        color: white;
+        border-color: #4299e1;
+    }
+
+    .lang-btn:hover:not(.active) {
+        border-color: #4299e1;
+        color: #4299e1;
+    }
+
+    /* 内容区块样式 */
+    .content-section {
+        padding: 20px;
+    }
+
     blockquote {
-        border-left: 4px solid var(--accent-color);
-        padding: 10px 20px;
+        border-left: 4px solid #4299e1;
+        padding: 15px 20px;
         margin: 20px 0;
-        background-color: var(--light-gray);
+        background: #f5f5f5;
         border-radius: 4px;
+        font-style: italic;
     }
-    
+
     h5 {
-        color: var(--primary-color);
+        color: #4299e1;
         margin-top: 30px;
         margin-bottom: 15px;
+        font-size: 1.2em;
     }
-    
+
     ul {
-        padding-left: 20px;
+        padding-left: 25px;
     }
-    
+
     li {
         margin-bottom: 8px;
     }
-    
+
     a {
-        color: var(--accent-color);
+        color: #4299e1;
         text-decoration: none;
         border-bottom: 1px solid transparent;
-        transition: var(--transition);
     }
-    
+
     a:hover {
-        color: var(--primary-color);
-        border-bottom: 1px solid var(--primary-color);
+        border-bottom: 1px solid #4299e1;
+    }
+
+    strong {
+        color: #2d3748;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+        .about-container {
+            padding: 10px;
+        }
+        
+        .content-section {
+            padding: 10px;
+        }
     }
 </style>
 
-<!-- Gitalk 评论 start  -->
+<!-- Gitalk 评论 (如果启用) -->
 {% if site.gitalk.enable %}
-<!-- Gitalk link  -->
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-
 <div id="gitalk-container" style="margin-top: 40px;"></div>
-    <script type="text/javascript">
-    var gitalk = new Gitalk({
+<script>
+var gitalk = new Gitalk({
     clientID: '{{site.gitalk.clientID}}',
     clientSecret: '{{site.gitalk.clientSecret}}',
     repo: '{{site.gitalk.repo}}',
     owner: '{{site.gitalk.owner}}',
     admin: ['{{site.gitalk.admin}}'],
-    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
-    id: 'about',
-    });
-    gitalk.render('gitalk-container');
+    id: 'about-page',
+    distractionFreeMode: false
+});
+gitalk.render('gitalk-container');
 </script>
-{% endif %}
-<!-- Gitalk end -->
-
- <!-- disqus 评论框 start  -->
-{% if site.disqus.enable %}
-
-<div class="comment" style="margin-top: 40px;">
-    <div id="disqus_thread" class="disqus-thread">
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus.username}}";
-    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
 {% endif %}
