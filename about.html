@@ -3,6 +3,7 @@ layout: page
 title: "About"
 description: "Hey, this is L's Thought Hub."
 header-img: "img/post-bg-rwd.jpg"
+permalink: /about/
 ---
 
 <!-- Language Selector -->
@@ -106,15 +107,51 @@ header-img: "img/post-bg-rwd.jpg"
         border: 1px solid var(--border-color);
         background: white;
         color: var(--primary-color);
+        font-size: 16px;
     }
     
     /* 中英文内容区块 */
     .zh, .en {
         margin-bottom: 20px;
+        line-height: 1.8;
     }
     
     .en {
         display: none;
+    }
+    
+    blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding: 10px 20px;
+        margin: 20px 0;
+        background-color: var(--light-gray);
+        border-radius: 4px;
+    }
+    
+    h5 {
+        color: var(--primary-color);
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    li {
+        margin-bottom: 8px;
+    }
+    
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: var(--transition);
+    }
+    
+    a:hover {
+        color: var(--primary-color);
+        border-bottom: 1px solid var(--primary-color);
     }
 </style>
 
@@ -124,7 +161,7 @@ header-img: "img/post-bg-rwd.jpg"
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 
-<div id="gitalk-container"></div>
+<div id="gitalk-container" style="margin-top: 40px;"></div>
     <script type="text/javascript">
     var gitalk = new Gitalk({
     clientID: '{{site.gitalk.clientID}}',
@@ -143,7 +180,7 @@ header-img: "img/post-bg-rwd.jpg"
  <!-- disqus 评论框 start  -->
 {% if site.disqus.enable %}
 
-<div class="comment">
+<div class="comment" style="margin-top: 40px;">
     <div id="disqus_thread" class="disqus-thread">
     </div>
 </div>
