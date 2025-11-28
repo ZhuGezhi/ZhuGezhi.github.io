@@ -10,15 +10,13 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
-        /* 全局变量定义 - 高级感配色方案 */
         :root {
-            --primary-color: #2d3748; /* 深灰蓝，专业感 */
-            --secondary-color: #718096; /* 中灰蓝 */
-            --accent-color: #4299e1; /* 亮蓝，强调色 */
+            --primary-color: #2d3748;
+            --secondary-color: #718096;
+            --accent-color: #4299e1;
             --light-gray: #f7fafc;
             --border-color: #e2e8f0;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
@@ -35,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* 公告栏样式 */
         .announcement {
             background-color: var(--accent-color);
             color: white;
@@ -80,7 +77,6 @@
             background-color: rgba(255,255,255,0.2);
         }
 
-        /* 导航栏样式 */
         .site-header {
             background-color: white;
             border-bottom: 1px solid var(--border-color);
@@ -149,7 +145,6 @@
             width: 100%;
         }
 
-        /* 主内容区布局 */
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -165,9 +160,49 @@
         .sidebar {
             width: 300px;
             flex-shrink: 0;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
         }
         
-        /* 页脚样式 */
+        .sidebar-avatar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-avatar img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--light-gray);
+        }
+        
+        .sidebar-about {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .sidebar-sns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .sidebar-sns a {
+            color: var(--secondary-color);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+        
+        .sidebar-sns a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
         .site-footer {
             background-color: white;
             border-top: 1px solid var(--border-color);
@@ -186,7 +221,6 @@
             margin: 0;
         }
         
-        /* 响应式调整 */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -207,7 +241,6 @@
     </style>
 </head>
 <body>
-    <!-- 公告栏 -->
     <div class="announcement" id="announcement">
         <div class="announcement-content">
             欢迎联系邮箱 <a href="mailto:zhugezhi7711@qq.com">zhugezhi7711@qq.com</a> 交流各种问题！
@@ -217,7 +250,6 @@
         </div>
     </div>
 
-    <!-- 导航栏 -->
     <header class="site-header">
         <div class="header-content">
             <h1 class="site-title">
@@ -231,28 +263,43 @@
         </div>
     </header>
 
-    <!-- 主内容区 -->
     <div class="container">
         <main class="main-content">
             {{ content }}
         </main>
         
-        <!-- 侧边栏 - 仅在非keynote布局显示 -->
         {% unless page.layout == 'keynote' %}
         <aside class="sidebar">
-            {% include sidebar.html %}
+            <div class="sidebar-avatar">
+                <img src="{{ site.url }}{{ site.sidebar-avatar }}" alt="Avatar">
+            </div>
+            <div class="sidebar-about">
+                <p>{{ site.sidebar-about-description }}</p>
+            </div>
+            <div class="sidebar-sns">
+                {% if site.github_username %}
+                <a href="https://github.com/{{ site.github_username }}" target="_blank"><i class="fa fa-github"></i></a>
+                {% endif %}
+                {% if site.zhihu_username %}
+                <a href="https://zhihu.com/people/{{ site.zhihu_username }}" target="_blank"><i class="fa fa-book"></i></a>
+                {% endif %}
+                {% if site.weibo_username %}
+                <a href="https://weibo.com/{{ site.weibo_username }}" target="_blank"><i class="fa fa-weibo"></i></a>
+                {% endif %}
+                {% if site.twitter_username %}
+                <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                {% endif %}
+            </div>
         </aside>
         {% endunless %}
     </div>
 
-    <!-- 页脚 -->
     <footer class="site-footer">
         <div class="container">
             <p>© {{ site.time | date: "%Y" }} L's Thought Hub. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- 公告栏关闭功能脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const announcement = document.getElementById('announcement');
