@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ page.title | default: site.title }}</title>
     
-    <!-- 添加Favicon配置 -->
+    <!-- Favicon配置 -->
     {% if site.favicon %}
     <link rel="icon" href="{{ site.url }}{{ site.favicon }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ site.url }}{{ site.favicon }}" type="image/x-icon">
@@ -170,7 +170,7 @@
             flex-shrink: 0;
             background: white;
             border-radius: 8px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: var(--shadow);
         }
         
@@ -184,31 +184,83 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--light-gray);
+            border: 4px solid var(--light-gray);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .sidebar-about {
             text-align: center;
             margin-bottom: 20px;
+        }
+        
+        .sidebar-about p {
             color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         .sidebar-sns {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin: 25px 0;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
         }
         
         .sidebar-sns a {
             color: var(--secondary-color);
-            font-size: 20px;
+            font-size: 22px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
+            background: var(--light-gray);
         }
         
         .sidebar-sns a:hover {
-            color: var(--accent-color);
+            color: white;
+            background: var(--accent-color);
             transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+        
+        .sidebar-tags {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+        
+        .sidebar-tags h4 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .tag-cloud a {
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            background: var(--light-gray);
+            color: var(--secondary-color);
+            border-radius: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .tag-cloud a:hover {
+            background: var(--accent-color);
+            color: white;
         }
         
         .site-footer {
@@ -281,23 +333,50 @@
             <div class="sidebar-avatar">
                 <img src="{{ site.url }}{{ site.sidebar-avatar }}" alt="Avatar">
             </div>
+            
             <div class="sidebar-about">
                 <p>{{ site.sidebar-about-description }}</p>
             </div>
+            
             <div class="sidebar-sns">
                 {% if site.github_username %}
-                <a href="https://github.com/{{ site.github_username }}" target="_blank"><i class="fa fa-github"></i></a>
+                <a href="https://github.com/{{ site.github_username }}" target="_blank" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
                 {% endif %}
                 {% if site.zhihu_username %}
-                <a href="https://zhihu.com/people/{{ site.zhihu_username }}" target="_blank"><i class="fa fa-book"></i></a>
+                <a href="https://zhihu.com/people/{{ site.zhihu_username }}" target="_blank" title="知乎">
+                    <i class="fa fa-book"></i>
+                </a>
                 {% endif %}
                 {% if site.weibo_username %}
-                <a href="https://weibo.com/{{ site.weibo_username }}" target="_blank"><i class="fa fa-weibo"></i></a>
+                <a href="https://weibo.com/{{ site.weibo_username }}" target="_blank" title="微博">
+                    <i class="fa fa-weibo"></i>
+                </a>
                 {% endif %}
                 {% if site.twitter_username %}
-                <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" title="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
                 {% endif %}
+                <a href="mailto:{{ site.email }}" target="_blank" title="Email">
+                    <i class="fa fa-envelope"></i>
+                </a>
             </div>
+            
+            {% if site.tags.size > 0 %}
+            <div class="sidebar-tags">
+                <h4>文章标签</h4>
+                <div class="tag-cloud">
+                    {% assign sorted_tags = site.tags | sort %}
+                    {% for tag in sorted_tags %}
+                    <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}">
+                        {{ tag[0] }} ({{ tag[1].size }})
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </aside>
         {% endunless %}
     </div>
@@ -305,6 +384,7 @@
     <footer class="site-footer">
         <div class="container">
             <p>© {{ site.time | date: "%Y" }} L's Thought Hub. All rights reserved.</p>
+            <p style="margin-top: 10px;">Built with <i class="fa fa-heart" style="color: #ff4d4d;"></i> and Jekyll</p>
         </div>
     </footer>
 
