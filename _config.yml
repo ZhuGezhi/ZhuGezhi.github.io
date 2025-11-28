@@ -5,14 +5,14 @@ header-img: "img/post-bg-desk.jpg"
 email: "zgl27375885@gmail.com"
 description: "Unity of knowledge and action."
 keyword: "BY, BY Lorne, 汁的博客, zhugezhi, 诸葛汁, Photo, Lit, Math"
-url: "https://zhugezhi.github.io"          # 使用https更安全
-baseurl: "/"      # 根目录，配置正确
-github_repo: "https://github.com/ZhuGezhi/zhugezhi.github.io.git" # 代码仓库地址
+url: "https://zhugezhi.github.io"
+baseurl: "/"
+github_repo: "https://github.com/ZhuGezhi/zhugezhi.github.io.git"
 
 # Sidebar settings
-sidebar: true                           # 启用侧边栏
+sidebar: true
 sidebar-about-description: "Knowledge and action unite; action validates knowledge."
-sidebar-avatar: "img/about-LZ-gentle.jpg"      # 侧边栏头像路径
+sidebar-avatar: "/img/about-LZ-gentle.jpg"
 
 # SNS settings
 RSS: false
@@ -22,26 +22,26 @@ github_username: "ZhuGezhi"
 twitter_username: "zgl27375885"
 
 # Build settings
-permalink: pretty                       # 美观的URL格式，配置正确
-paginate: 10                            # 每页显示10篇文章
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"] # 排除文件
-anchorjs: true                          # 启用锚点JS
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true
 
 # Gems
 plugins: 
-  - jekyll-paginate                     # 分页插件
-  - jekyll-sitemap                      # 推荐添加：生成站点地图，利于SEO
+  - jekyll-paginate
+  - jekyll-sitemap
 
 # Markdown settings
 markdown: kramdown
 highlighter: rouge
 kramdown:
-  input: GFM                            # 使用GitHub Flavored Markdown
-  syntax_highlighter: rouge             # 明确指定语法高亮器
+  input: GFM
+  syntax_highlighter: rouge
 
 # 评论系统
 gitalk:
-  enable: false                         # 已修复拼写错误
+  enable: false
   clientID: "Ov23liEeAkAaaPBsp5G0"
   clientSecret: "f04fdd477c4baab8088a20848fc07ecf37630793"
   repo: "blog-comments"
@@ -50,15 +50,15 @@ gitalk:
   distractionFreeMode: true
 
 # 统计
-ga_track_id: "G-CZXSW9B3FH"            # Google Analytics ID
-ga_domain: "zhugezhi.icu"               # 自定义域名
+ga_track_id: "G-CZXSW9B3FH"
+ga_domain: "zhugezhi.icu"
 
 # Featured Tags
-featured-tags: true                     # 启用首页标签
-featured-condition-size: 1              # 标签数量阈值
+featured-tags: true
+featured-condition-size: 1
 
 # Progressive Web Apps
-chrome-tab-theme-color: "#4299e1"       # 改为主色调，更统一
+chrome-tab-theme-color: "#4299e1"
 service-worker: true
 
 # Friends
@@ -75,6 +75,14 @@ friends: [
     }
 ]
 
-# 额外配置：提高兼容性
-timezone: Asia/Shanghai                 # 设置时区，确保日期显示正确
-encoding: utf-8                         # 文件编码
+# 额外配置
+timezone: Asia/Shanghai
+encoding: utf-8
+
+# 默认布局配置
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
